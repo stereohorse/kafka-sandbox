@@ -1,0 +1,8 @@
+version: "3"
+services:
+  zookeeper:
+    image: zookeeper:3.4.9
+  kafka:
+    build: kafka
+    links:
+      - zookeeper
