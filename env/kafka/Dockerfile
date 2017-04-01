@@ -8,7 +8,10 @@ ADD kafka_$KAFKA_VERSION.tgz /opt
 RUN mv /opt/kafka_$KAFKA_VERSION /opt/kafka
 
 RUN apk add --no-cache --update \
+  curl \
   netcat-openbsd \
   bash
 
-ENTRYPOINT ["/opt/kafka/bin/kafka-server-start.sh"]
+WORKDIR /opt/kafka
+
+ENTRYPOINT ["bin/kafka-server-start.sh", "config/server.properties"]

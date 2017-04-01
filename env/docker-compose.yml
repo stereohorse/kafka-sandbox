@@ -4,5 +4,8 @@ services:
     image: zookeeper:3.4.9
   kafka:
     build: kafka
+    ports:
+      - "9092:9092"
     links:
       - zookeeper
+    command: --override zookeeper.connect=zookeeper:2181 --override  advertised.host.name=localhost
